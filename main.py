@@ -5,7 +5,7 @@ from kivymd.uix.button import MDIconButton
 from kivymd.uix.button import MDRoundFlatButton
 from kivymd.uix.label import MDLabel
 from kivymd.font_definitions import theme_font_styles
-from kivymd.uix.textfield import MDTextField
+# from kivymd.uix.textfield import MDTextField
 # from kivymd.uix.textfield import TextInput
 from kivy.uix.textinput import TextInput
 
@@ -27,15 +27,35 @@ sub_for_easy = [['1', '3', '9', '27', '81'],
                 ['1', '7', '13', '19', '25'],
                 ['1', '6', '11', '16', '21'],
                 ['1', '4', '7', '10', '13']]
-output_for_easy = []
+sub_for_normal = [['1', '5', '13', '25', '41', '61'],
+                  ['1', '3', '7', '13', '21', '31'],
+                  ['1', '4', '10', '19', '31', '46'],
+                  ['1', '2', '7', '16', '29', '46'],
+                  ['1', '2', '8', '19', '35', '56'],
+                  ['1', '2', '6', '13', '23', '36'],
+                  ['1', '5', '11', '19', '29', '41'],
+                  ['1', '3', '10', '22', '39', '61'],
+                  ['1', '4', '11', '22', '37', '56'],
+                  ['1', '4', '12', '25', '43', '66'],
+                  ['1', '6', '15', '28', '45', '66'],
+                  ['1', '2', '5', '10', '17', '26'],
+                  ['1', '6', '13', '22', '33', '46'],
+                  ['1', '3', '8', '16', '27', '41'],
+                  ['1', '5', '10', '16', '23', '31'],
+                  ['1', '2', '4', '7', '11', '16'],
+                  ['1', '6', '16', '31', '51', '76'],
+                  ['1', '6', '12', '19', '27', '36'],
+                  ['1', '5', '14', '28', '47', '71'],
+                  ['1', '4', '9', '16', '25', '36'],
+                  ['1', '3', '6', '10', '15', '21'],
+                  ['1', '6', '14', '25', '39', '56'],
+                  ['1', '3', '9', '19', '33', '51'],
+                  ['1', '5', '12', '22', '35', '51'],
+                  ['1', '4', '8', '13', '19', '26']]
 
 
 class Guess_subsequence(MDApp):
     """ Главный класс"""
-
-
-
-
     def build(self):
         """Создание виджетов (кнопок).
            Главная функция.
@@ -83,6 +103,7 @@ class Guess_subsequence(MDApp):
                     icon="language-python",
                     line_color=(0, 0, 0, 0),
                     pos_hint={"center_x": .5, "center_y": .5},
+                    on_press=nl,
                 )
             )
             screen.add_widget(
@@ -112,13 +133,14 @@ class Guess_subsequence(MDApp):
             """
             screen.clear_widgets()
 
-            with open('levels.txt', 'r+') as f_for_levels:
+            with open('easy.txt', 'r+') as f_for_levels:
                 f_for_levels_2str = f_for_levels.readlines()
                 e_p = ' '.join(f_for_levels_2str)
                 e_p = e_p.replace('\n', '')
                 # e_p2 = list(e_p)
                 e_p = e_p.split(' ')
-                del e_p[-1] # список номеров кнопок
+                if e_p[0] == '':
+                    del e_p[-1] # список номеров кнопок
             for i in range(int(e_p[1])):
                 screen.add_widget(
                     MDRoundFlatButton(
@@ -222,12 +244,14 @@ class Guess_subsequence(MDApp):
             )
             zislo3[0] = str(int(zislo3[0]) + 1)
             zislo3[1] = str(int(zislo3[1]) + 1)
-            zislo3 = zislo3[:2]
+            # zislo3 = zislo3[:2]
             zislo4 = ' '.join(zislo3)
             zislo4 = zislo4.replace(' ', '\n')
-            with open('levels.txt', 'w') as f_e2:
+            if zislo4[-1] == '':
+                del zislo4[-1]
+            with open('easy.txt', 'w') as f_e2:
                 f_e2.write(zislo4)
-                f_e2.write('\n1\n0\n1\n0')
+
 
         def on_text(instance, value):
             """Эта функция считывает поле ввода и если ответ правильный вызывает функцию victory,
@@ -235,12 +259,13 @@ class Guess_subsequence(MDApp):
                вызывая функцию more2.
             """
             ans = value.split(' ')
-            with open('levels.txt', 'r+') as easy_l:
+            with open('easy.txt', 'r+') as easy_l:
                 subseq_e2 = easy_l.readlines()
                 subseq_e3 = ' '.join(subseq_e2)
                 subseq_e3 = subseq_e3.replace('\n', '')
                 subseq_e3 = subseq_e3.split(' ')
-                del subseq_e3[-1]
+                if subseq_e3[-1] == '':
+                    del subseq_e3[-1]
             try:
                 if ans[-1] == '':
                     del ans[-1]
@@ -313,7 +338,6 @@ class Guess_subsequence(MDApp):
             """Эта функция обрабатывает текстовое поле для easy зелёных кнопок"""
             ans2 = value.split(' ')
 
-
             try:
                 if ans2[-1] == '':
                     del ans2[-1]
@@ -345,12 +369,350 @@ class Guess_subsequence(MDApp):
                     on_press=el,
                 )
             )
+        def normal_level():
+            """Эта функция вызывается при нажатии на кнопку normal на начальном экране.
+               В свою же очередь эта функция вызывает функцию next_screen_n из-за того что на экран не могут поместиться столько кнопок.
+            """
+            # print("yes")
+            screen.clear_widgets()
+            s = 0
+            p = ''
+            with open('normal.txt', 'r+') as normal_file:
+                normal_file3str = normal_file.readlines()
+                n_p = ' '.join(normal_file3str)
+                n_p = n_p.replace('\n', '')
+                # e_p2 = list(e_p)
+                n_p = n_p.split(' ')
+                if n_p[-1] == '':
+                    del n_p[-1]  # список номеров кнопок
+            for i in range(int(n_p[1])):
+                if s >= 14:
+                    p = 'g'
+                    break
+                else:
+                    s += 1
+                screen.add_widget(
+                    MDRoundFlatButton(
+                            text=str(i + 1),
+                            pos_hint={"center_x": .5, "center_y": 0.95 - i / 10 + (0.03 * i)},
+                            # halign="center",
+                            line_color=(0, 1, 0, 1),
+                            text_color=(0, 1, 0, 1),
+                            font_size="10sp",
+                            line_width=2,
+                            on_press=last_normal
+                            # ids=str(i + 1),
+                            # on_press=last_easy
+                    )
+                )
+            if n_p[0] != '0':
+                if s <= 13:
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=n_p[0], # синяя кнопка
+                            pos_hint={"center_x": .5, "center_y": 0.95 - int(n_p[1]) / 10 + (0.03 * int(n_p[1]))},
+                            #halign="center",
+                            line_width=2,
+                            font_size="10sp",
+                            on_press=lambda yt: now_normal(zislo_n=n_p[0])
+                            # on_press=lambda ne2: now_easy(zislo2=n_p[2]),
 
+                        )
+                    )
+                else:
+                    if p == '':
+                        p = 'b'
+                    s += 1
+            for e in range(25 - int(n_p[1]) - 1):
+                if s >= 13:
+                    if p == '':
+                        p = 'c'
+                    break
+                else:
+                    s += 1
+                screen.add_widget(
+                    MDRoundFlatButton(
+                        text=str(int(n_p[0]) + e + 1),
+                        pos_hint={"center_x": .5, "center_y": 0.95 - (e + int(n_p[0])) / 10 + (0.03 * (e + int(n_p[0])))},
+                        # halign="center",
+                        line_color="#808080",
+                        text_color="#808080",
+                        font_size="10sp",
+                        line_width=2,
+                    )
+                )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=mw,
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .9, "center_y": .1},
+                    on_press=lambda n_next: next_screen_n(place=p, n_p2=n_p),
+                )
+            )
+            # print(p)
+        nl = lambda nl2: normal_level()
+        def next_screen_n(place, n_p2):
+            """Эта функция вызывается функцией normal_level и служит её продолжением."""
+            screen.clear_widgets()
+            # i2 = 0
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .1},
+                    on_press=nl,
+                )
+            )
 
+            if place == 'g' and n_p2[1] != '14':
+                for i2 in range(int(n_p2[1]) - 14):
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                                text=str(i2 + 15),
+                                pos_hint={"center_x": .5, "center_y": 0.95 - i2 / 10 + (0.03 * i2)},
+                                # halign="center",
+                                line_color=(0, 1, 0, 1),
+                                text_color=(0, 1, 0, 1),
+                                font_size="10sp",
+                                line_width=2,
+                                on_press=last_normal
+                        )
+                    )
+                if n_p2[0] != '0':
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=n_p2[0],  # синяя кнопка
+                            pos_hint={"center_x": .5, "center_y": 0.95 - (i2 + 1) / 10 + (0.03 * (i2 + 1))},
+                            # halign="center",
+                            line_width=2,
+                            font_size="10sp",
+                            on_press=lambda asdfe: now_normal(zislo_n=n_p2[0]),
 
+                        )
+                    )
+                for e in range(11 - i2 - 2):
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=str(int(n_p2[0]) + e + 1),
+                            pos_hint={"center_x": .5,
+                                      "center_y": 0.95 - (e + i2 + 2) / 10 + (0.03 * (e + i2 + 2))},
+                            # halign="center",
+                            line_color="#808080",
+                            text_color="#808080",
+                            font_size="10sp",
+                            line_width=2,
+                        )
+                    )
+            elif place == 'b':
+                if n_p2[0] != '0':
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=n_p2[0],  # синяя кнопка
+                            pos_hint={"center_x": .5, "center_y": 0.95 - 1 / 10 + (0.03 * 1)},
+                            # halign="center",
+                            line_width=2,
+                            font_size="10sp",
+                            on_press=lambda xyz: now_normal(zislo_n=n_p2[0]),
+                            # on_press=lambda ne2: now_easy(zislo2=n_p[2]),
 
+                        )
+                    )
+                for e2 in range(10):
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=str(int(n_p2[0]) + e2 + 1),
+                            pos_hint={"center_x": .5,
+                                      "center_y": 0.95 - (e2 + 2) / 10 + (0.03 * (e2 + 2))},
+                            # halign="center",
+                            line_color="#808080",
+                            text_color="#808080",
+                            font_size="10sp",
+                            line_width=2,
+                        )
+                    )
+            elif place == 'c':
+                for e in range(11):
+                    screen.add_widget(
+                        MDRoundFlatButton(
+                            text=str(14 + e + 1),
+                            pos_hint={"center_x": .5,
+                                      "center_y": 0.95 - (e + 1) / 10 + (0.03 * (e + 1))},
+                            # halign="center",
+                            line_color="#808080",
+                            text_color="#808080",
+                            font_size="10sp",
+                            line_width=2,
+                        )
+                    )
+        def now_normal(zislo_n):
+            screen.clear_widgets()
 
+            subseq_n = sub_for_normal[int(zislo_n) - 1]
+            subseq_n = subseq_n[:4]
+            subseq_n = ' '.join(subseq_n)
+            screen.add_widget(
+                MDLabel(
+                    text=str(subseq_n),
+                    pos_hint={"center_x": .6, "center_y": .5},
+                    font_style=theme_font_styles[2],
+                )
+            )
+            screen.add_widget(
+                MDLabel(
+                    text='You need to write 2 number and form of writing must be so: 3 4 without , or something else',
+                    pos_hint={"center_x": .5, "center_y": .7},
+                    font_style=theme_font_styles[3],
+                )
+            )
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput.bind(text=on_textn)
+            screen.add_widget(textinput)
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=nl,
+                )
+            )
+        def on_textn(instance, value):
+            ansn = value.split(' ')
+            with open('normal.txt', 'r+') as normal_l:
+                subseq_n2 = normal_l.readlines()
+                subseq_n3 = ' '.join(subseq_n2)
+                subseq_n3 = subseq_n3.replace('\n', '')
+                subseq_n3 = subseq_n3.split(' ')
+                if subseq_n3[-1] == '':
+                    del subseq_n3[-1]
+            try:
+                if ansn[-1] == '':
+                    del ansn[-1]
+                if len(ansn) > 2:
+                    more3()
+                else:
+                    if len(ansn) < 0 or len(ansn) < 1:
+                        pass
+                    elif ansn[0] == sub_for_normal[int(subseq_n3[0]) - 1][-2] and ansn[1] == \
+                            sub_for_normal[int(subseq_n3[0]) - 1][-1]:
+                        victory_n(zislo_n2=subseq_n3)
 
+            except IndexError:
+                pass
+            # print(i2)
+        def more3():
+            screen.clear_widgets()
+            screen.add_widget(
+                MDLabel(
+                    text='something wrong',
+                    pos_hint={"center_x": .5, "center_y": .5},
+                    font_style=theme_font_styles[2],
+                )
+            )
+            screen.add_widget(
+                MDLabel(
+                    text='may be you wrote a letter or icon',
+                    pos_hint={"center_x": .5, "center_y": .4},
+                    font_style=theme_font_styles[3]
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=nl,
+                )
+            )
+        def victory_n(zislo_n2):
+            screen.clear_widgets()
+            screen.add_widget(
+                MDLabel(
+                    text='VICTORY',
+                    pos_hint={"center_x": .5, "center_y": .5},
+                    font_style=theme_font_styles[2],
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=nl,
+                )
+            )
+            zislo_n2[0] = str(int(zislo_n2[0]) + 1)
+            zislo_n2[1] = str(int(zislo_n2[1]) + 1)
+            # zislo_n2 = zislo_n2[:-4]
+            # zislo_n2 = zislo_n2[:2]
+            zislo5 = ' '.join(zislo_n2)
+            zislo5 = zislo5.replace(' ', '\n')
+            with open('normal.txt', 'w') as f_n2:
+                f_n2.write(zislo5)
+        def last_normal(instance):
+            self.button_n = str(instance.text)
+            last_pn = sub_for_normal[int(self.button_n) - 1]
+            screen.clear_widgets()
+            screen.add_widget(
+                MDLabel(
+                    text='You need to write 2 number and form of writing must be so: 3 4 without , or something else',
+                    pos_hint={"center_x": .5, "center_y": .7},
+                    font_style=theme_font_styles[3],
+                )
+            )
+            last_pn2 = last_pn[:4]
+            last_pn3 = ' '.join(last_pn2)
+            screen.add_widget(
+                MDLabel(
+                    text=last_pn3,
+                    pos_hint={"center_x": .6, "center_y": .5},
+                    font_style=theme_font_styles[2],
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=nl,
+                )
+            )
+            textinput3 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput3.bind(text=on_text3n)
+            screen.add_widget(textinput3)
+        def on_text3n(instance, value):
+            ans_last_n = value.split(' ')
+
+            try:
+                if ans_last_n[-1] == '':
+                    del ans_last_n[-1]
+                if len(ans_last_n) > 2:
+                    more3()
+                else:
+                    if len(ans_last_n) < 0 or len(ans_last_n) < 1:
+                        pass
+                    elif ans_last_n[0] == sub_for_normal[int(self.button_n) - 1][-2] and ans_last_n[1] == \
+                            sub_for_normal[int(self.button_n) - 1][-1]:
+                        last_victory_n()
+            except IndexError:
+                pass
+        def last_victory_n():
+            screen.clear_widgets()
+            screen.add_widget(
+                MDLabel(
+                    text='VICTORY',
+                    pos_hint={"center_x": .5, "center_y": .5},
+                    font_style=theme_font_styles[2],
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="language-python",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=nl,
+                )
+            )
+        # nsn = lambda n_next: next_screen_n()
         # кнопки назад
         # self.theme_cls.material_style = "M3"
         screen.add_widget(
@@ -364,6 +726,7 @@ class Guess_subsequence(MDApp):
             )
         )
 
+
         # Эти строки исполняются в начале и должны содержать в себе всё что будет в функции main_window()
         screen.add_widget(
             MDRectangleFlatIconButton(
@@ -372,6 +735,7 @@ class Guess_subsequence(MDApp):
                 icon="language-python",
                 line_color=(0, 0, 0, 0),
                 pos_hint={"center_x": .5, "center_y": .5},
+                on_press=nl,
             )
         )
         screen.add_widget(
