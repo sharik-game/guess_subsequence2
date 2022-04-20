@@ -55,7 +55,7 @@ sub_for_normal = [['1', '5', '13', '25', '41', '61'],
                   ['1', '3', '9', '19', '33', '51'],
                   ['1', '5', '12', '22', '35', '51'],
                   ['1', '4', '8', '13', '19', '26']]
-sub_for_hard = [['15', '20', '20', '6', '6'], ['16', '5', '20', '25', '17'], ['26', '16', '06', '68', '88']]
+sub_for_hard = [['15', '20', '20', '6', '6'], ['16', '5', '20', '25', '17'], ['16', '06', '68', '88', '28']]
 
 language = ['language', 'язык']
 c_language1 = ['english', 'английский']
@@ -957,7 +957,7 @@ class Guess_subsequence(MDApp):
                                 victory_h(zisloh=subseq_h3)
                     elif subseq_h3[0] == '2':
                         if ans4[0] == sub_for_hard[2][-2] and ans4[1] == \
-                                sub_for_hard[2][-1]:
+                                    sub_for_hard[2][-1]:
                             victory_h(zisloh=subseq_h3)
             except IndexError:
                 pass
@@ -1022,17 +1022,17 @@ class Guess_subsequence(MDApp):
                 last_lan18 = n_lan18.read()
             if number_hl == '1':
                 if last_lan18 == '0':
-                    subseq_lh = sub_for_hard[0]
-                    subseq_lh = subseq_lh[:3]
-                    subseq_lh = ' '.join(subseq_lh)
+                    self.subseq_lh = sub_for_hard[0]
+                    self.subseq_lh2 = self.subseq_lh[:3]
+                    self.subseq_lh2 = ' '.join(self.subseq_lh2)
                 else:
-                    subseq_lh = sub_for_hard[1]
-                    subseq_lh = subseq_lh[:3]
-                    subseq_lh = ' '.join(subseq_lh)
+                    self.subseq_lh = sub_for_hard[1]
+                    self.subseq_lh2 = self.subseq_lh[:3]
+                    self.subseq_lh2 = ' '.join(self.subseq_lh2)
             else:
-                subseq_lh = sub_for_hard[2]
-                subseq_lh = subseq_lh[:3]
-                subseq_lh = ' '.join(subseq_lh)
+                self.subseq_lh = sub_for_hard[2]
+                self.subseq_lh2 = self.subseq_lh[:3]
+                self.subseq_lh2 = ' '.join(self.subseq_lh2)
 
 
             screen.add_widget(
@@ -1044,7 +1044,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDLabel(
-                    text=str(subseq_lh),
+                    text=str(self.subseq_lh2),
                     pos_hint={"center_x": .6, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
@@ -1065,10 +1065,12 @@ class Guess_subsequence(MDApp):
             with open('language.txt', 'r+') as n_lan19:
                 last_lan19 = n_lan19.read()
             with open('hard.txt', 'r+') as hard_l:
-                subseq_lh2 = hard_l.readlines()
-                subseq_lh3 = ' '.join(subseq_lh2)
+                subseq_lh4 = hard_l.readlines()
+                subseq_lh3 = ' '.join(subseq_lh4)
                 subseq_lh3 = subseq_lh3.replace('\n', '')
                 subseq_lh3 = subseq_lh3.split(' ')
+                print(self.subseq_lh)
+                print(str(sub_for_hard.index(self.subseq_lh)))
                 if subseq_lh3[-1] == '':
                     del subseq_lh3[-1]
             try:
@@ -1077,20 +1079,19 @@ class Guess_subsequence(MDApp):
                 if len(ans5) > 2:
                     more4()
                 else:
+                    # print(type(last_lan19))
+                    # print(ans5)
                     if len(ans5) < 0 or len(ans5) < 1:
                         pass
-                    elif subseq_lh3[1] == '1':
-                        if last_lan19 == '0':
-                            if ans5[0] == sub_for_hard[0][-2] and ans5[1] == \
-                                    sub_for_hard[0][-1]:
-                                victory_lh()
-                        elif last_lan19 == '1':
-                            if ans5[0] == sub_for_hard[1][-2] and ans5[1] == \
-                                    sub_for_hard[1][-1]:
-                                victory_lh()
-                    elif subseq_lh3[1] == '2':
+                    elif str(sub_for_hard.index(self.subseq_lh)) == '0':
+                        if ans5 == ['6', '6']:
+                            victory_lh()
+                    elif str(sub_for_hard.index(self.subseq_lh)) == '1':
+                        if ans5 == ['25', '17']:
+                            victory_lh()
+                    elif str(sub_for_hard.index(self.subseq_lh)) == '2':
                         if ans5[0] == sub_for_hard[2][-2] and ans5[1] == \
-                                sub_for_hard[2][-1]:
+                                    sub_for_hard[2][-1]:
                             victory_lh()
             except IndexError:
                 pass
