@@ -67,6 +67,9 @@ victory = ['VICTORY', 'ПОБЕДА']
 task = ['You need to write 2 number and form of writing must be so: 3 4 without , or something else', 'Тебе надо написать 2 числа и форма записи должна быть без пробелов или , например: 3 4']
 wrong_ans = ['something wrong', 'что-то ты намудрил']
 message_m = ['may be you wrote a letter or icon', 'может быть ты написал букву или символ']
+how_to_play = ['how to play?', 'как играть?']
+advice = ['You need to understand the principle of subsequence and continue it(in hard you need to think unusual).', 'Тебе нужно понять принцып построения последовательности и продолжить её(в сложном уровне нужно хорошенько пораскинуть мозгами и думать не стандартно).']
+way_easy = '/date/loco/easy'
 class Guess_subsequence(MDApp):
     """ Главный класс"""
     def build(self):
@@ -87,7 +90,7 @@ class Guess_subsequence(MDApp):
                 last_lan = n_lan.read()
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=mw
                 )
@@ -95,8 +98,18 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 # language
                 MDRectangleFlatIconButton(
+                    text=how_to_play[int(last_lan)],
+                    icon="book",
+                    line_color=(0, 0, 0, 0),
+                    pos_hint={"center_x": .5, "center_y": .5},
+                    on_press=lambda hrdv: book(),
+                )
+            )
+            screen.add_widget(
+                # language
+                MDRectangleFlatIconButton(
                     text=language[int(last_lan)],
-                    icon="language-python",
+                    icon="flag",
                     line_color=(0, 0, 0, 0),
                     pos_hint={"center_x": .5, "center_y": .6},
                     on_press=lambda pokl: f_language(),
@@ -128,7 +141,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=settings_call,
                 )
@@ -142,6 +155,24 @@ class Guess_subsequence(MDApp):
             """Эта функция вызывается при нажатии на кнопку русский или russian и меняет язык на русский"""
             with open('language.txt', 'w') as russian:
                russian.write('1')
+        def book():
+            screen.clear_widgets()
+            with open('language.txt', 'r+') as n_lan22:
+                last_lan22 = n_lan22.read()
+            screen.add_widget(
+                MDLabel(
+                    text=advice[int(last_lan22)],
+                    pos_hint={"center_x": .5, "center_y": .8},
+                    font_style=theme_font_styles[4],
+                )
+            )
+            screen.add_widget(
+                MDIconButton(
+                    icon="back.png",
+                    pos_hint={"center_x": .1, "center_y": .9},
+                    on_press=settings_call,
+                )
+            )
         def main_window():
 
 
@@ -157,8 +188,8 @@ class Guess_subsequence(MDApp):
                 MDRectangleFlatIconButton(
                     # easy level
                     text=easy[int(last_lan3)],
-                    icon="language-python",
                     line_color=(0, 0, 0, 0),
+                    icon="android",
                     pos_hint={"center_x": .5, "center_y": .6},
                     on_press=el
                 )
@@ -168,7 +199,7 @@ class Guess_subsequence(MDApp):
                 MDRectangleFlatIconButton(
                     # normal level
                     text=normal[int(last_lan3)],
-                    icon="language-python",
+                    icon="android",
                     line_color=(0, 0, 0, 0),
                     pos_hint={"center_x": .5, "center_y": .5},
                     on_press=nl,
@@ -178,7 +209,7 @@ class Guess_subsequence(MDApp):
                 MDRectangleFlatIconButton(
                     # hard level
                     text=hard[int(last_lan3)],
-                    icon="language-python",
+                    icon="android",
                     line_color=(0, 0, 0, 0),
                     pos_hint={"center_x": .5, "center_y": .4},
                     on_press=hl,
@@ -187,7 +218,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDIconButton(
                     # This is settings
-                    icon="language-python",
+                    icon="set.png",
                     pos_hint={"center_x": .9, "center_y": .9},
                     on_press=settings_call
                 )
@@ -250,7 +281,7 @@ class Guess_subsequence(MDApp):
                 )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=mw,
                 )
@@ -285,7 +316,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(textinput)
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=el,
                 )
@@ -307,7 +338,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=el,
                 )
@@ -370,7 +401,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=el,
                 )
@@ -400,7 +431,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=el,
                 )
@@ -440,7 +471,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=el,
                 )
@@ -519,14 +550,14 @@ class Guess_subsequence(MDApp):
                 )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=mw,
                 )
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="front.png",
                     pos_hint={"center_x": .9, "center_y": .1},
                     on_press=lambda n_next: next_screen_n(place=p, n_p2=n_p),
                 )
@@ -539,7 +570,7 @@ class Guess_subsequence(MDApp):
             # i2 = 0
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .1},
                     on_press=nl,
                 )
@@ -652,7 +683,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(textinput)
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=nl,
                 )
@@ -701,7 +732,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=nl,
                 )
@@ -719,7 +750,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=nl,
                 )
@@ -756,7 +787,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=nl,
                 )
@@ -793,7 +824,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=nl,
                 )
@@ -876,7 +907,7 @@ class Guess_subsequence(MDApp):
                 )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=mw,
                 )
@@ -889,17 +920,17 @@ class Guess_subsequence(MDApp):
                 last_lan14 = n_lan14.read()
             if numer_h == '1':
                 if last_lan14 == '0':
-                    subseq_h = sub_for_hard[0]
-                    subseq_h = subseq_h[:3]
-                    subseq_h = ' '.join(subseq_h)
+                    self.subseq_h = sub_for_hard[0]
+                    self.subseq_h2 = self.subseq_h[:3]
+                    self.subseq_h2 = ' '.join(self.subseq_h2)
                 else:
-                    subseq_h = sub_for_hard[1]
-                    subseq_h = subseq_h[:3]
-                    subseq_h = ' '.join(subseq_h)
+                    self.subseq_h = sub_for_hard[1]
+                    self.subseq_h2 = self.subseq_h[:3]
+                    self.subseq_h2 = ' '.join(self.subseq_h2)
             else:
-                subseq_h = sub_for_hard[2]
-                subseq_h = subseq_h[:3]
-                subseq_h = ' '.join(subseq_h)
+                self.subseq_h = sub_for_hard[2]
+                self.subseq_h2 = self.subseq_h[:3]
+                self.subseq_h2 = ' '.join(self.subseq_h2)
 
 
             screen.add_widget(
@@ -911,7 +942,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDLabel(
-                    text=str(subseq_h),
+                    text=str(self.subseq_h2),
                     pos_hint={"center_x": .6, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
@@ -921,7 +952,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(textinput)
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=hl,
                 )
@@ -932,30 +963,31 @@ class Guess_subsequence(MDApp):
             with open('language.txt', 'r+') as n_lan15:
                 last_lan15 = n_lan15.read()
             with open('hard.txt', 'r+') as hard_l:
-                subseq_h2 = hard_l.readlines()
-                subseq_h3 = ' '.join(subseq_h2)
+                subseq_h22 = hard_l.readlines()
+                subseq_h3 = ' '.join(subseq_h22)
                 subseq_h3 = subseq_h3.replace('\n', '')
                 subseq_h3 = subseq_h3.split(' ')
                 if subseq_h3[-1] == '':
                     del subseq_h3[-1]
             try:
+                # print(self.subseq_h)
                 if ans4[-1] == '':
                     del ans4[-1]
                 if len(ans4) > 2:
                     more4()
                 else:
+
+                    # print(ans4)
                     if len(ans4) < 0 or len(ans4) < 1:
                         pass
-                    elif subseq_h3[0] == '1':
-                        if last_lan15 == '0':
-                            if ans4[0] == sub_for_hard[0][-2] and ans4[1] == \
-                                    sub_for_hard[0][-1]:
-                                victory_h(zisloh=subseq_h3)
-                        elif last_lan15 == '1':
-                            if ans4[0] == sub_for_hard[1][-2] and ans4[1] == \
-                                    sub_for_hard[1][-1]:
-                                victory_h(zisloh=subseq_h3)
-                    elif subseq_h3[0] == '2':
+                    elif str(sub_for_hard.index(self.subseq_h)) == '0':
+                        if ans4 == ['6', '6']:
+                            victory_h(zisloh=subseq_h3)
+                    elif str(sub_for_hard.index(self.subseq_h)) == '1':
+                        print("yes")
+                        if ans4 == ['25', '17']:
+                            victory_h(zisloh=subseq_h3)
+                    elif str(sub_for_hard.index(self.subseq_h)) == '2':
                         if ans4[0] == sub_for_hard[2][-2] and ans4[1] == \
                                     sub_for_hard[2][-1]:
                             victory_h(zisloh=subseq_h3)
@@ -983,7 +1015,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=hl,
                 )
@@ -1002,7 +1034,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=hl,
                 )
@@ -1054,7 +1086,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(textinput)
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=hl,
                 )
@@ -1069,8 +1101,8 @@ class Guess_subsequence(MDApp):
                 subseq_lh3 = ' '.join(subseq_lh4)
                 subseq_lh3 = subseq_lh3.replace('\n', '')
                 subseq_lh3 = subseq_lh3.split(' ')
-                print(self.subseq_lh)
-                print(str(sub_for_hard.index(self.subseq_lh)))
+                # print(self.subseq_lh)
+                # print(str(sub_for_hard.index(self.subseq_lh)))
                 if subseq_lh3[-1] == '':
                     del subseq_lh3[-1]
             try:
@@ -1109,7 +1141,7 @@ class Guess_subsequence(MDApp):
             )
             screen.add_widget(
                 MDIconButton(
-                    icon="language-python",
+                    icon="back.png",
                     pos_hint={"center_x": .1, "center_y": .9},
                     on_press=hl,
                 )
@@ -1120,7 +1152,7 @@ class Guess_subsequence(MDApp):
             MDRectangleFlatIconButton(
                 # easy level
                 text=easy[int(last_lan2)],
-                icon="language-python",
+                icon='android',
                 line_color=(0, 0, 0, 0),
                 pos_hint={"center_x": .5, "center_y": .6},
                 on_press=el,
@@ -1133,7 +1165,7 @@ class Guess_subsequence(MDApp):
             MDRectangleFlatIconButton(
                 # normal level
                 text=normal[int(last_lan2)],
-                icon="language-python",
+                icon="android",
                 line_color=(0, 0, 0, 0),
                 pos_hint={"center_x": .5, "center_y": .5},
                 on_press=nl,
@@ -1143,7 +1175,7 @@ class Guess_subsequence(MDApp):
             MDRectangleFlatIconButton(
                 # hard level
                 text=hard[int(last_lan2)],
-                icon="language-python",
+                icon="android",
                 line_color=(0, 0, 0, 0),
                 pos_hint={"center_x": .5, "center_y": .4},
                 on_press=hl,
@@ -1153,7 +1185,7 @@ class Guess_subsequence(MDApp):
         screen.add_widget(
             MDIconButton(
                 # This is settings
-                icon="language-python",
+                icon="set.png",
                 pos_hint={"center_x": .9, "center_y": .9},
                 on_press=settings_call
             )
