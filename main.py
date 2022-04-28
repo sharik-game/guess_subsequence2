@@ -62,9 +62,9 @@ easy = ['easy', 'лёгкий']
 normal = ['normal', 'нормальный']
 hard = ['hard', 'сложный']
 victory = ['VICTORY', 'ПОБЕДА']
-task = ['You need to write 2 number and form of writing must be so: 3 4 without , or something else', 'Тебе надо написать 2 числа и форма записи должна быть без пробелов или , например: 3 4']
+task = ['You need to write 2 number and form of writing must be so: 3 4 without comma or something else', 'Тебе надо написать 2 числа и форма записи должна быть  без запяты. Например: 3 4']
 wrong_ans = ['something wrong', 'что-то ты намудрил']
-message_m = ['may be you wrote a letter or icon', 'может быть ты написал букву или символ']
+message_m = ['may be you wrote a letter or icon or you write more than 2 numbers', 'может быть ты написал букву или символ или больше чем два числа']
 how_to_play = ['how to play?', 'как играть?']
 advice = ['You need to understand the principle of subsequence and continue it(in hard you need to think unusual).', 'Тебе нужно понять принцып построения последовательности и продолжить её(в сложном уровне нужно хорошенько пораскинуть мозгами и думать не стандартно).']
 way_easy = '/date/loco/easy'
@@ -298,7 +298,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(subseq_e),
-                    pos_hint={"center_x": .6, "center_y": 0.52},
+                    pos_hint={"center_x": .6, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -309,7 +309,7 @@ class Guess_subsequence(MDApp):
                     font_style=theme_font_styles[3],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.52}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.45}, multiline=False)
             textinput.bind(text=on_text)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -423,7 +423,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=last_p3,
-                    pos_hint={"center_x": .5, "center_y": 0.52},
+                    pos_hint={"center_x": .5, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -434,7 +434,7 @@ class Guess_subsequence(MDApp):
                     on_press=el,
                 )
             )
-            textinput2 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.52}, multiline=False)
+            textinput2 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.45}, multiline=False)
             textinput2.bind(text=on_text2)
             screen.add_widget(textinput2)
         def on_text2(instance, value):
@@ -665,7 +665,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(subseq_n),
-                    pos_hint={"center_x": .5, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -676,7 +676,7 @@ class Guess_subsequence(MDApp):
                     font_style=theme_font_styles[3],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": 0.45}, multiline=False)
             textinput.bind(text=on_textn)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -779,7 +779,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=last_pn3,
-                    pos_hint={"center_x": .5, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -790,7 +790,7 @@ class Guess_subsequence(MDApp):
                     on_press=nl,
                 )
             )
-            textinput3 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
+            textinput3 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": 0.45}, multiline=False)
             textinput3.bind(text=on_text3n)
             screen.add_widget(textinput3)
         def on_text3n(instance, value):
@@ -941,11 +941,11 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(self.subseq_h2),
-                    pos_hint={"center_x": .5, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": 0.45}, multiline=False)
             textinput.bind(text=on_texth)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -1075,11 +1075,11 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(self.subseq_lh2),
-                    pos_hint={"center_x": .5, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": 0.45},
                     font_style=theme_font_styles[2],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": 0.45}, multiline=False)
             textinput.bind(text=on_textlh)
             screen.add_widget(textinput)
             screen.add_widget(
