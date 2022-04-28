@@ -9,10 +9,8 @@ from kivymd.font_definitions import theme_font_styles
 # from kivymd.uix.textfield import MDTextField
 # from kivymd.uix.textfield import TextInput
 from kivy.uix.textinput import TextInput
-from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.material_resources import dp
 
-import re
+
 
 
 # импортирование необходимых модулей
@@ -134,7 +132,7 @@ class Guess_subsequence(MDApp):
                 MDRectangleFlatIconButton(
                     text=c_language1[int(last_lan1)],
                     icon='flag',
-                    pos_hint={"center_x": .5, "center_y": .5},
+                    pos_hint={"center_x": .7, "center_y": .5},
                     line_color=(0, 0, 0, 0),
                     on_press=lambda jklh: press_english()
                 )
@@ -300,7 +298,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(subseq_e),
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .6, "center_y": 0.52},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -311,7 +309,7 @@ class Guess_subsequence(MDApp):
                     font_style=theme_font_styles[3],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.52}, multiline=False)
             textinput.bind(text=on_text)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -425,7 +423,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=last_p3,
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": 0.52},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -436,7 +434,7 @@ class Guess_subsequence(MDApp):
                     on_press=el,
                 )
             )
-            textinput2 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput2 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .7, "center_y": 0.52}, multiline=False)
             textinput2.bind(text=on_text2)
             screen.add_widget(textinput2)
         def on_text2(instance, value):
@@ -667,7 +665,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(subseq_n),
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -678,7 +676,7 @@ class Guess_subsequence(MDApp):
                     font_style=theme_font_styles[3],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
             textinput.bind(text=on_textn)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -781,7 +779,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=last_pn3,
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
             )
@@ -792,7 +790,7 @@ class Guess_subsequence(MDApp):
                     on_press=nl,
                 )
             )
-            textinput3 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput3 = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
             textinput3.bind(text=on_text3n)
             screen.add_widget(textinput3)
         def on_text3n(instance, value):
@@ -943,11 +941,11 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(self.subseq_h2),
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
             textinput.bind(text=on_texth)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -1077,11 +1075,11 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=str(self.subseq_lh2),
-                    pos_hint={"center_x": .6, "center_y": .5},
+                    pos_hint={"center_x": .5, "center_y": .5},
                     font_style=theme_font_styles[2],
                 )
             )
-            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": .5, "center_y": .5}, multiline=False)
+            textinput = TextInput(size_hint=(.3, .05), pos_hint={"center_x": 0.85, "center_y": .5}, multiline=False)
             textinput.bind(text=on_textlh)
             screen.add_widget(textinput)
             screen.add_widget(
@@ -1191,4 +1189,8 @@ class Guess_subsequence(MDApp):
             )
         )
         return screen
-Guess_subsequence().run() # вызов главного класса
+
+if __name__ == '__main__':
+    Guess_subsequence().run()  # вызов главного класса
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
