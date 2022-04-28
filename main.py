@@ -393,7 +393,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=message_m[int(last_lan11)],
-                    pos_hint={"center_x": .5, "center_y": .4},
+                    pos_hint={"center_x": .5, "center_y": .27},
                     font_style=theme_font_styles[3]
                 )
             )
@@ -724,7 +724,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=message_m[int(last_lan7)],
-                    pos_hint={"center_x": .5, "center_y": .4},
+                    pos_hint={"center_x": .5, "center_y": .27},
                     font_style=theme_font_styles[3]
                 )
             )
@@ -1007,7 +1007,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=message_m[int(last_lan16)],
-                    pos_hint={"center_x": .5, "center_y": .4},
+                    pos_hint={"center_x": .5, "center_y": .27},
                     font_style=theme_font_styles[3]
                 )
             )
