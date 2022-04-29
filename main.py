@@ -160,7 +160,7 @@ class Guess_subsequence(MDApp):
             screen.add_widget(
                 MDLabel(
                     text=advice[int(last_lan22)],
-                    pos_hint={"center_x": .5, "center_y": .8},
+                    pos_hint={"center_x": .5, "center_y": .5},
                     font_style=theme_font_styles[4],
                 )
             )
